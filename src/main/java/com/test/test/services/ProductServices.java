@@ -44,19 +44,18 @@ public class ProductServices {
 
     public int calculateTotal(List<Long> ids) {
         int total = 0;
-        for (int i = 0; i < ids.size(); i++) {
-            for (int j = 0; j < getAllProducts().size(); j++) {
-                if (ids.get(i).longValue() == getAllProducts().get(j).getId().longValue()) {
-                    total += getAllProducts().get(j).getPrice();
+        for (Long id : ids) {
+            for(Product product : getAllProducts()){
+                if (id.longValue() == product.getId().longValue()) {
+                    total += product.getPrice();
                 }
-
             }
         }
         return total;
     }
 
     public double calculateIva(int total){
-        double iva = 0;
+        double iva;
         iva = total * 0.19;
         return iva;
     }
